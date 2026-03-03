@@ -1,10 +1,24 @@
-name: Jalankan Bot Rekap
+name: Kirim Rekap Harian
 
 on:
+  schedule:
+    # UTC (WIB = UTC+7)
+    - cron: '0 1 * * *'   # 08:00 WIB - Pengingat
+    - cron: '0 10 * * *'  # 17:00 WIB - Rekap lengkap
+  
   workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Mode: test atau rekap'
+        required: true
+        default: 'rekap'
+        type: choice
+        options:
+          - test
+          - rekap
 
 jobs:
-  run-bot:
+  send-report:
     runs-on: ubuntu-latest
     
     steps:
@@ -22,7 +36,10 @@ jobs:
     
     - name: Jalankan Bot
       env:
-        TOKEN: "8631281500:AAEBi0xKTj5X3qxBhJWOm9dyZ_E1Tbxa8D0"  # <--- GANTI INI!
+        TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
       run: |
-        echo "Menjalankan bot..."
-        python bot.py
+        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          python bot.py ${{ github.event.inputs.mode }}
+        else
+          python bot.py rekap
+        fi
