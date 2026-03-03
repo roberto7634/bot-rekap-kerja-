@@ -2,12 +2,11 @@ name: Jalankan Bot Rekap
 
 on:
   schedule:
-    # Format cron: menit jam hari-tanggal bulan hari-minggu
     # UTC (WIB = UTC+7)
-    - cron: '0 1 * * *'   # 08:00 WIB - Pengingat absen
-    - cron: '0 10 * * *'  # 17:00 WIB - Rekap harian
+    - cron: '0 1 * * *'   # 08:00 WIB
+    - cron: '0 10 * * *'  # 17:00 WIB
   
-  workflow_dispatch:  # Bisa dijalankan manual juga
+  workflow_dispatch:
 
 jobs:
   run-bot:
@@ -26,15 +25,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pyTelegramBotAPI
-    
-    - name: Cek Token
-      run: |
-        if [ -z "${{ secrets.TELEGRAM_TOKEN }}" ]; then
-          echo "❌ ERROR: Token tidak ditemukan di Secrets!"
-          exit 1
-        else
-          echo "✅ Token tersedia"
-        fi
     
     - name: Jalankan Bot
       env:
