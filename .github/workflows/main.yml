@@ -1,7 +1,13 @@
 name: Jalankan Bot Rekap
 
 on:
-  workflow_dispatch:
+  schedule:
+    # Format cron: menit jam hari-tanggal bulan hari-minggu
+    # UTC (WIB = UTC+7)
+    - cron: '0 1 * * *'   # 08:00 WIB - Pengingat absen
+    - cron: '0 10 * * *'  # 17:00 WIB - Rekap harian
+  
+  workflow_dispatch:  # Bisa dijalankan manual juga
 
 jobs:
   run-bot:
@@ -14,46 +20,26 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'
+        python-version: '3.10'
     
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install pyTelegramBotAPI
-        echo "✅ pyTelegramBotAPI installed"
-        pip install schedule
-        echo "✅ schedule installed"
-        pip install pandas
-        echo "✅ pandas installed"
-        pip list  # Lihat semua library yang terinstall
     
-    - name: Test import
+    - name: Cek Token
       run: |
-        python -c "
-import sys
-print('Python version:', sys.version)
-try:
-    import telebot
-    print('✅ telebot OK')
-except ImportError as e:
-    print('❌ telebot error:', e)
-    
-try:
-    import schedule
-    print('✅ schedule OK')
-except ImportError as e:
-    print('❌ schedule error:', e)
-    
-try:
-    import pandas
-    print('✅ pandas OK')
-except ImportError as e:
-    print('❌ pandas error:', e)
-"
+        if [ -z "${{ secrets.TELEGRAM_TOKEN }}" ]; then
+          echo "❌ ERROR: Token tidak ditemukan di Secrets!"
+          exit 1
+        else
+          echo "✅ Token tersedia"
+        fi
     
     - name: Jalankan Bot
       env:
         TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
       run: |
-        echo "Menjalankan bot..."
+        echo "🚀 Menjalankan bot..."
         python bot.py
+        echo "✅ Selesai"
