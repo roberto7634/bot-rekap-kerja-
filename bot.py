@@ -18,7 +18,7 @@ import logging
 
 # ============= KONFIGURASI =============
 TOKEN = "8631281500:AAEBi0xKTj5X3qxBhJWOm9dyZ_E1Tbxa8D0"  # GANTI!
-ADMIN_IDS = [123456789]  # GANTI dengan ID Telegram Anda (dapat dari @userinfobot)
+ADMIN_IDS = 7232671831  # GANTI dengan ID Telegram Anda (dapat dari @userinfobot)
 bot = telebot.TeleBot(TOKEN)
 
 # File untuk menyimpan data
@@ -1090,4 +1090,5 @@ if __name__ == "__main__":
         bot.infinity_polling()
     except KeyboardInterrupt:
         print("\n🛑 Bot dihentikan...")
+
         scheduler.shutdown()
