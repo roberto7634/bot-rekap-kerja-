@@ -1,0 +1,32 @@
+name: Jalankan Bot Rekap
+
+on:
+  schedule:
+    # Format: menit jam hari-tanggal bulan hari-minggu
+    # UTC (WIB = UTC+7)
+    - cron: '0 1 * * *'   # 08:00 WIB (pengingat)
+    - cron: '0 10 * * *'  # 17:00 WIB (rekap harian)
+  
+  workflow_dispatch:  # Bisa dijalankan manual
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        pip install pyTelegramBotAPI pandas openpyxl
+    
+    - name: Jalankan Bot
+      env:
+        TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+      run: python bot.py
