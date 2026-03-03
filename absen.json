@@ -1,0 +1,23 @@
+[
+  {
+    "tanggal": "03/03/2026",
+    "jam": "08:15",
+    "project_id": "PRJ001",
+    "nama": "Budi Santoso",
+    "status": "Hadir"
+  },
+  {
+    "tanggal": "03/03/2026",
+    "jam": "08:20",
+    "project_id": "PRJ001",
+    "nama": "Ani Wijaya",
+    "status": "Hadir"
+  },
+  {
+    "tanggal": "03/03/2026",
+    "jam": "09:00",
+    "project_id": "KTR001",
+    "nama": "Citra Dewi",
+    "status": "Izin"
+  }
+]
