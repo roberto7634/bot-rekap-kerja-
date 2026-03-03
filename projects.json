@@ -1,0 +1,14 @@
+{
+  "PRJ001": {
+    "nama": "Renovasi Kantor",
+    "nilai": "500000000",
+    "tanggal": "01/03/2026",
+    "status": "Aktif"
+  },
+  "KTR001": {
+    "nama": "Pembangunan Gudang",
+    "nilai": "750000000",
+    "tanggal": "02/03/2026",
+    "status": "Aktif"
+  }
+}
