@@ -1,11 +1,6 @@
 name: Jalankan Bot Rekap
 
 on:
-  schedule:
-    # UTC (WIB = UTC+7)
-    - cron: '0 1 * * *'   # 08:00 WIB
-    - cron: '0 10 * * *'  # 17:00 WIB
-  
   workflow_dispatch:
 
 jobs:
@@ -23,13 +18,11 @@ jobs:
     
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
         pip install pyTelegramBotAPI
     
     - name: Jalankan Bot
       env:
-        TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+        TOKEN: "8631281500:AAEBi0xKTj5X3qxBhJWOm9dyZ_E1Tbxa8D0"  # <--- GANTI INI!
       run: |
-        echo "🚀 Menjalankan bot..."
+        echo "Menjalankan bot..."
         python bot.py
-        echo "✅ Selesai"
