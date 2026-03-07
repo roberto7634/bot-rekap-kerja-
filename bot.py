@@ -14,7 +14,7 @@ if not TOKEN:
 bot = telebot.TeleBot(TOKEN)
 
 # 🔴 GANTI DENGAN ID TELEGRAM ANDA!
-ADMIN_CHAT_ID = "8631281500:AAEBi0xKTj5X3qxBhJWOm9dyZ_E1Tbxa8D0"  # Contoh: "123456789"
+ADMIN_CHAT_ID = "8650707421"  # Contoh: "123456789"
 
 # File untuk menyimpan data (simpan di repository)
 PROJECTS_FILE = 'projects.json'
@@ -254,3 +254,4 @@ if __name__ == "__main__":
         kirim_laporan_lengkap()
     
     print("=" * 60)
+
